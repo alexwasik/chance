@@ -26,4 +26,6 @@ app.get('/', (req, res) => {
   res.send('Hello, you!');
 });
 
+app.use('/charges', require('./api/routes/charges'));
+
 module.exports = app;

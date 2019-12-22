@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander');
+const connector = require('../api/helpers/connector');
 
 program
   .option('-f, --filename <required>', 'filename required')
@@ -16,5 +17,6 @@ process.on('uncaughtException', (err) => {
 
 // TODO import file to database
 // const chargeFile = program.filename;
+connector();
 
 process.exit(0);
