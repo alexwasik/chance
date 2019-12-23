@@ -7,12 +7,11 @@
     "start": "node app.js",
     "start:debug": "nodemon --inspect app.js",
     "mergeSwagger": "node api/helpers/mergeSwagger.js",
-    "prestart": "npm run ready && npm run mergeSwagger && import",
+    "prestart": "npm run ready && npm run mergeSwagger",
     "pretest": "npm run ready && npm run mergeSwagger",
     "lint": "eslint . --ext .js || true",
     "ready": "node bin/wait.js",
-    "test": "istanbul test node_modules/mocha/bin/_mocha",
-    "import": "node bin/import.js"
+    "test": "istanbul test node_modules/mocha/bin/_mocha"
   },
   "repository": {
     "type": "git",
