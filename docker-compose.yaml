@@ -34,4 +34,3 @@ services:
           npm install
           npm run prestart
           npm start
-

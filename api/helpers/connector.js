@@ -1,20 +1,29 @@
-const { Client } = require('pg');
+const knex = require('knex')({
+  client: 'pg',
+  connection: {
+    host: 'localhost',
+    user: 'user',
+    password: 'password',
+    database: 'zylo_chance',
+    port: 54321
+  },
+  pool: { min: 2, max: 10 },
+  migrations: { tableName: 'knex_migrations' }
+});
+const logger = require('../../api/helpers/logger');
+const fs = require('fs');
 
-const connector = async () => {
-  const client = new Client({
-    host: process.env.POSTGRES_HOST,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB
-  });
-  client.connect();
+async function connector(file) {
+  console.log('made it', file);
   try {
-    const res = await client.query('SELECT NOW()');
-    console.log('res', res);
-    await client.end();
-  } catch (error) {
-    console.log('error', error);
+    const data = fs.readFileSync(file);
+    console.log('data', data);
+    // await knex('charge').insert(data);
+    process.exit(0);
+  } catch (e) {
+    logger.info('Error Importing Data', e);
+    process.exit(1);
   }
 };
 
-module.exports = connector;
+connector();
