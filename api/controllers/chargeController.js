@@ -1,21 +1,16 @@
 'use strict';
 
 const chargeService = require('../services/chargeService');
-const knex = require('knex');
-const { defaultConnection } = require('../../config/config');
-/**
- * Swagger Controller method for GET /charges/build Endpoint
- */
-const index = async (req, res) => {
-  try {
-    const db = knex(defaultConnection);
-    const values = await db.select().from('charge')
-      .then(console.log('success'));
-    res.status(200).json(values);
-  } catch (error) {
-    res.status(500).json(error);
-    console.log('error', error);
-  }
+const htmlView = require('../views/htmlView');
+
+const fetch = async (req, res) => {
+  chargeService.fetch((err, message, rows) => {
+    if (err) {
+      res.status(400).json({ code: 400, message: err.message }).end();
+    } else {
+      res.send(htmlView.view(rows)).end();
+    }
+  });
 };
 
 const build = (req, res) => {
@@ -33,5 +28,5 @@ const build = (req, res) => {
 
 module.exports = {
   build: build,
-  index: index
+  fetch: fetch
 };

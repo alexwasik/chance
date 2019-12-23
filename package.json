@@ -48,10 +48,11 @@
     "knex": "^0.20.0",
     "lodash": "^4.17.5",
     "moment": "^2.22.0",
+    "pg": "7.4.3",
+    "pg-format": "^1.0.4",
     "swagger-parser": "^4.0.2",
     "swagger-tools": "^0.10.3",
-    "winston": "^2.4.1",
-    "pg": "7.4.3"
+    "winston": "^2.4.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.3",
